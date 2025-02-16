@@ -55,6 +55,23 @@ chmod +x ~/.zshrc
 chmod +x ~/.config/waybar/scripts/powermenu.sh
 chmod +x ~/.config/rofi/launcher.sh
 cp -r bg/*  ~/Pictures/backgrounds/
+#SDDM SETUP
+USERNAME=$(whoami)
+echo "Enabling SDDM..."
+sudo systemctl enable sddm.service
+sudo systemctl start sddm.service
+
+# Configure auto-login for Hyprland
+SDDM_CONF="/etc/sddm.conf.d/autologin.conf"
+
+echo "Configuring auto-login for user: $USERNAME"
+sudo mkdir -p /etc/sddm.conf.d
+
+# Write the auto-login config
+echo "[Autologin]
+User=$USERNAME
+Session=hyprland
+" | sudo tee $SDDM_CONF
 
 # Reloading Font
 chsh -s $(which zsh)
