@@ -2,13 +2,13 @@
 
 # Install base-devel group
 sudo sed -i 's/^#ParallelDownloads = [0-9]\+/ParallelDownloads = 5/' /etc/pacman.conf
-sudo pacman -Syu --needed --noconfirm go nano neovim  base-devel xorg-xwayland xorg-xrandr 
+sudo pacman -Syu --needed --noconfirm go nano neovim  base-devel
 
 # Install Yay from AUR
 git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm && cd .. && rm -rf yay
 
 # Install packages with Yay
-yay -Sy --needed --noconfirm hyprland-bin polkit-gnome ffmpeg neovim viewnior rofi pavucontrol 
+yay -Sy --needed --noconfirm hyprland-bin polkit-gnome ffmpeg neovim viewnior rofi pavucontrol wayland xorg-xwayland xorg-xrandr 
 yay -Sy --needed --noconfirm thunar starship wl-clipboard wf-recorder swaybg grimblast-git ffmpegthumbnailer 
 yay -Sy --needed --noconfirm tumbler playerctl noise-suppression-for-voice thunar-archive-plugin polybar waybar 
 yay -Sy --needed --noconfirm wlogout swaylock-effects sddm-git pamixer nwg-look-bin 
