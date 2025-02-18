@@ -9,7 +9,7 @@ git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
 
 # Install packages with Yay
 yay -Sy --needed --noconfirm hyprland-bin polkit-gnome ffmpeg neovim viewnior rofi pavucontrol wayland xorg-xwayland wlr-randr 
-yay -Sy --needed --noconfirm thunar starship wl-clipboard wf-recorder swaybg grimblast-git ffmpegthumbnailer 
+yay -Sy --needed --noconfirm thunar alacritty swww starship wl-clipboard wf-recorder swaybg grimblast-git ffmpegthumbnailer 
 yay -Sy --needed --noconfirm tumbler playerctl noise-suppression-for-voice thunar-archive-plugin polybar waybar 
 yay -Sy --needed --noconfirm wlogout swaylock-effects sddm-git pamixer nwg-look-bin 
 #Install fonts
@@ -18,7 +18,7 @@ sudo cp -r fonts/* /usr/share/fonts/
 
 #Installing my apps and setting up qemu
 curl -fsS https://dl.brave.com/install.sh | sh
-yay -S qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat ebtables iptables libguestfs
+yay -S qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat ebtables iptables libguestfs
 sudo systemctl enable --now libvirtd
 sudo sed -i 's/^#\(unix_sock_group = "libvirt"\)/\1/; s/^#\(unix_sock_rw_perms = "0770"\)/\1/' /etc/libvirt/libvirtd.conf
 sudo systemctl restart libvirtd
@@ -49,6 +49,7 @@ echo "✅ GRUB update complete. ."
 
 # Copy HyperLand config files
 mkdir -p ~/.config && cp -r ./dotconfig/* ~/.config
+mkdir  ~/Pictures
 mkdir  ~/Pictures/backgrounds
 cp -r dotconfig/.zshrc $HOME/
 chmod +x ~/.zshrc
@@ -59,7 +60,7 @@ cp -r bg/*  ~/Pictures/backgrounds/
 USERNAME=$(whoami)
 echo "Enabling SDDM..."
 sudo systemctl enable sddm.service
-sudo systemctl start sddm.service
+
 
 # Configure auto-login for Hyprland
 SDDM_CONF="/etc/sddm.conf.d/autologin.conf"
